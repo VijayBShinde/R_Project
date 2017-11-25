@@ -30,13 +30,18 @@ transformData <- select(sampleData, -X)
 colnames(transformData)
 
 # Generic filter trades
-filterData <- filter(transformData,str_detect(SERIES, 'EQ'))
+filterData <- filter(transformData,str_detect(SERIES, 'EQ'), OPEN < 300 & OPEN > 10)
 result <- filterData %>% mutate(high_low = HIGH - LOW, Gainers = CLOSE - OPEN)
-View(result)
+
+filterData2 <- filter(result,high_low > 1)
+#View(result)
 
 # vIEW SOME SPECIFIC COLUMNS
-specificColData <- result[,c(1,3,4,5,14,15)]
-View(specificColData)
+specificColDataResult <- filterData2[,c(1,3,4,5,6,8,14,15)]
+View(specificColDataResult)
+
+# Filter price less than 300
+
 
 # Filter the bank related stocks data for further analysis
 
