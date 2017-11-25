@@ -29,6 +29,15 @@ transformData <- select(sampleData, -X)
 # Below function will show you the column available in NSE dataset
 colnames(transformData)
 
+# Generic filter trades
+filterData <- filter(transformData,str_detect(SERIES, 'EQ'))
+result <- filterData %>% mutate(high_low = HIGH - LOW, Gainers = CLOSE - OPEN)
+View(result)
+
+# vIEW SOME SPECIFIC COLUMNS
+specificColData <- result[,c(1,3,4,5,14,15)]
+View(specificColData)
+
 # Filter the bank related stocks data for further analysis
 
 filterData <- filter(transformData,str_detect(SERIES, 'EQ'), str_detect(SYMBOL, 'BANK'))
