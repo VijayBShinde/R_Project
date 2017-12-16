@@ -1,4 +1,6 @@
 # Code for intraday prediction
+install.packages("mailR")
+library("mailR")
 library("dplyr")
 library("downloader")
 library("stringr")
@@ -42,6 +44,8 @@ result <- filterData %>%
 View(result)
 
 # vIEW SOME SPECIFIC COLUMNS
-specificColDataResult <- result[,c("SYMBOL", "R1", "R2", "S1", "S2", "OPEN","HIGH","LOW","CLOSE","LAST","PREVCLOSE")]
+specificColDataResult <- result[,c("SYMBOL", "R1", "R2", "S1", "S2", 
+                                   "OPEN","HIGH","LOW","CLOSE","LAST","PREVCLOSE", 
+                                   "TOTTRDQTY","TOTTRDVAL","TOTALTRADES")]
 View(specificColDataResult)
 
